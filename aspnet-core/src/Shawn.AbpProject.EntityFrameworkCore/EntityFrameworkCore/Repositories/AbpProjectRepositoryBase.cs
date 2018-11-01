@@ -16,6 +16,7 @@ namespace Shawn.AbpProject.EntityFrameworkCore.Repositories
         protected AbpProjectRepositoryBase(IDbContextProvider<AbpProjectDbContext> dbContextProvider)
             : base(dbContextProvider)
         {
+
         }
 
         // Add your common methods for all repositories

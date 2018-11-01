@@ -22,6 +22,7 @@ namespace Shawn.AbpProject.EntityFrameworkCore
             {
                 Configuration.Modules.AbpEfCore().AddDbContext<AbpProjectDbContext>(options =>
                 {
+                   
                     if (options.ExistingConnection != null)
                     {
                         AbpProjectDbContextConfigurer.Configure(options.DbContextOptions, options.ExistingConnection);
