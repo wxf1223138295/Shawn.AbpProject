@@ -13,5 +13,6 @@ namespace Shawn.AbpProject.TestEntity
         public DateTime BookPublish { get; set; }
         public string publisher { get; set; }
         public decimal pricebook { get; set; }
+        public PublisherInfo _PublisherInfo { get; private set; }
     }
 }

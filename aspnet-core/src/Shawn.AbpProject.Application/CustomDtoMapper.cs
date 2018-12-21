@@ -12,8 +12,8 @@ namespace Shawn.AbpProject
         public static void CreateMappings(IMapperConfigurationExpression configuration)
         {
             //自定义映射规则
-            //configuration.CreateMap<BookDto, Book>().ForMember(u=>u.pricebook,op=>op.Ignore())
-            //    .ForMember(u=>u.BookName,op=>op.MapFrom(input=>input.publisher));
+            //configuration.CreateMap<BookDto, Book>().ForMember(u => u.pricebook, op => op.Ignore())
+            //    .ForMember(u => u.BookName, op => op.MapFrom(input => input.publisher));
         }
     }
     }

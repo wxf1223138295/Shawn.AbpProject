@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
 using Abp.AutoMapper;
+using AutoMapper;
 using Shawn.AbpProject.TestApplication.Dto;
 using Shawn.AbpProject.TestEntity;
 
@@ -11,15 +12,17 @@ namespace Shawn.AbpProject.TestApplication
     public class BookAppService:AbpProjectAppServiceBase, IBookAppService
     {
         private readonly IBookRepository _bookRepository;
+        private readonly IMapper _mapper;
 
-        public BookAppService(IBookRepository bookRepository)
+        public BookAppService(IBookRepository bookRepository, IMapper mapper)
         {
             _bookRepository = bookRepository;
+            _mapper = mapper;
         }
 
         public async Task<bool> insertEntityAsync(BookDto input)
         {
-            //var b=ObjectMapper.Map<Book>(input);
+            var kb=ObjectMapper.Map<Book>(input);
             var b = input.MapTo<Book>();
             //Book b=new Book
             //{

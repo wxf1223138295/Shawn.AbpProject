@@ -6,6 +6,7 @@ using Microsoft.IdentityModel.Tokens;
 using Abp.AspNetCore;
 using Abp.AspNetCore.Configuration;
 using Abp.AspNetCore.SignalR;
+using Abp.Localization;
 using Abp.Modules;
 using Abp.Reflection.Extensions;
 using Abp.Zero.Configuration;
@@ -34,6 +35,7 @@ namespace Shawn.AbpProject
 
         public override void PreInitialize()
         {
+
             Configuration.DefaultNameOrConnectionString = _appConfiguration.GetConnectionString(
                 AbpProjectConsts.ConnectionStringName
             );

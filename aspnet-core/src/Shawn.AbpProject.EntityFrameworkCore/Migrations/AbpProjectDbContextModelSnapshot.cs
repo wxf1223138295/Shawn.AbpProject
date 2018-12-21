@@ -850,6 +850,17 @@ namespace Shawn.AbpProject.Migrations
                     b.ToTable("AbpOrganizationUnits");
                 });
 
+            modelBuilder.Entity("Shawn.AbpProject.ApplyPool.ApplyCost", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.HasKey("Id");
+
+                    b.ToTable("ApplyCost","dbo");
+                });
+
             modelBuilder.Entity("Shawn.AbpProject.Authorization.Roles.Role", b =>
                 {
                     b.Property<int>("Id")
@@ -1006,6 +1017,63 @@ namespace Shawn.AbpProject.Migrations
                     b.HasIndex("TenantId", "NormalizedUserName");
 
                     b.ToTable("AbpUsers");
+                });
+
+            modelBuilder.Entity("Shawn.AbpProject.CenterPool.CenterCost", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int?>("CenterCostBehaviorRecordsId");
+
+                    b.Property<int?>("CenterCostUsesId");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CenterCostBehaviorRecordsId");
+
+                    b.HasIndex("CenterCostUsesId");
+
+                    b.ToTable("CenterCost","dbo");
+                });
+
+            modelBuilder.Entity("Shawn.AbpProject.CenterPool.CenterCostBehaviorRecord", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<DateTime>("CreationTime");
+
+                    b.Property<long?>("CreatorUserId");
+
+                    b.Property<DateTime?>("LastModificationTime");
+
+                    b.Property<long?>("LastModifierUserId");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("CenterCostBehaviorRecord","dbo");
+                });
+
+            modelBuilder.Entity("Shawn.AbpProject.CenterPool.CenterCostUse", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<DateTime>("CreationTime");
+
+                    b.Property<long?>("CreatorUserId");
+
+                    b.Property<DateTime?>("LastModificationTime");
+
+                    b.Property<long?>("LastModifierUserId");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("CenterCostUse","dbo");
                 });
 
             modelBuilder.Entity("Shawn.AbpProject.MultiTenancy.Tenant", b =>
@@ -1229,6 +1297,17 @@ namespace Shawn.AbpProject.Migrations
                         .HasForeignKey("LastModifierUserId");
                 });
 
+            modelBuilder.Entity("Shawn.AbpProject.CenterPool.CenterCost", b =>
+                {
+                    b.HasOne("Shawn.AbpProject.CenterPool.CenterCostBehaviorRecord", "CenterCostBehaviorRecords")
+                        .WithMany()
+                        .HasForeignKey("CenterCostBehaviorRecordsId");
+
+                    b.HasOne("Shawn.AbpProject.CenterPool.CenterCostUse", "CenterCostUses")
+                        .WithMany()
+                        .HasForeignKey("CenterCostUsesId");
+                });
+
             modelBuilder.Entity("Shawn.AbpProject.MultiTenancy.Tenant", b =>
                 {
                     b.HasOne("Shawn.AbpProject.Authorization.Users.User", "CreatorUser")
@@ -1246,6 +1325,31 @@ namespace Shawn.AbpProject.Migrations
                     b.HasOne("Shawn.AbpProject.Authorization.Users.User", "LastModifierUser")
                         .WithMany()
                         .HasForeignKey("LastModifierUserId");
+                });
+
+            modelBuilder.Entity("Shawn.AbpProject.TestEntity.Book", b =>
+                {
+                    b.OwnsOne("Shawn.AbpProject.TestEntity.PublisherInfo", "_PublisherInfo", b1 =>
+                        {
+                            b1.Property<int?>("BookId")
+                                .ValueGeneratedOnAdd()
+                                .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                            b1.Property<Guid>("CityId");
+
+                            b1.Property<int>("Number");
+
+                            b1.Property<string>("Street");
+
+                            b1.Property<int>("sss");
+
+                            b1.ToTable("Book","dbo");
+
+                            b1.HasOne("Shawn.AbpProject.TestEntity.Book")
+                                .WithOne("_PublisherInfo")
+                                .HasForeignKey("Shawn.AbpProject.TestEntity.PublisherInfo", "BookId")
+                                .OnDelete(DeleteBehavior.Cascade);
+                        });
                 });
 
             modelBuilder.Entity("Abp.Application.Features.EditionFeatureSetting", b =>
