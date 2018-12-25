@@ -1,5 +1,7 @@
 # Introduction
-
+1.实现了领域事件，command事件驱动领域事件
+2.集成了Automap
+3.按照eshoponcontainers实现了一个业务（仅供参考）
 This is a template to create **ASP.NET Core MVC / Angular** based startup projects for [ASP.NET Boilerplate](https://aspnetboilerplate.com/Pages/Documents). It has 2 different versions:
 
 1. [ASP.NET Core MVC & jQuery](https://aspnetboilerplate.com/Pages/Documents/Zero/Startup-Template-Core) (server rendered multi-page application).
@@ -29,5 +31,6 @@ Create & download your project from https://aspnetboilerplate.com/Templates
 * [ASP.NET Core & Angular  version.](https://aspnetboilerplate.com/Pages/Documents/Zero/Startup-Template-Angular)
 
 # License
+
 
 [MIT](LICENSE).
