@@ -15,7 +15,7 @@ namespace Shawn.AbpProject.CommandHandlers
         private readonly ICenterCostRepository _orderRepository;
         public async Task HandleEventAsync(UseCenterPoolCostCommand eventData)
         {
-            var entity=new CenterPool.CenterCost(eventData.CenterCostBehaviorRecords,eventData.CenterCostUses,"2018",10000);
+            var entity=new CenterPool.CenterCost("2018",10000);
 
             entity.UseCenterCost(1);
 

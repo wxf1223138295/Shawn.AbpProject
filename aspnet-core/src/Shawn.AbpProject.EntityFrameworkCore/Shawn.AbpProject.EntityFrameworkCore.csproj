@@ -16,9 +16,9 @@
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="2.1.4" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Shawn.AbpProject.Core\Shawn.AbpProject.Core.csproj" />
+    <DotNetCliToolReference Include="Microsoft.EntityFrameworkCore.Tools.DotNet" Version="2.0.0" />
   </ItemGroup>
   <ItemGroup>
-    <DotNetCliToolReference Include="Microsoft.EntityFrameworkCore.Tools.DotNet" Version="2.0.0" />
+    <ProjectReference Include="..\..\BizMasterData.Domain\BizMasterData.Domain.csproj" />
   </ItemGroup>
 </Project>

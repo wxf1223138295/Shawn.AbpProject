@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Shawn.AbpProject.EntityFrameworkCore;
 
 namespace Shawn.AbpProject.Migrations
 {
     [DbContext(typeof(AbpProjectDbContext))]
-    partial class AbpProjectDbContextModelSnapshot : ModelSnapshot
+    [Migration("20181225052336_init8")]
+    partial class init8
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

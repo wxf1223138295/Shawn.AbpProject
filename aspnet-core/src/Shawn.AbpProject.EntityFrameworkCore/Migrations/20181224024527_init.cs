@@ -412,6 +412,19 @@ namespace Shawn.AbpProject.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "CenterCost",
+                schema: "dbo",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_CenterCost", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "CenterCostBehaviorRecord",
                 schema: "dbo",
                 columns: table => new
@@ -443,6 +456,38 @@ namespace Shawn.AbpProject.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_CenterCostUse", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "UnitWork1",
+                schema: "dbo",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    test1 = table.Column<string>(nullable: true),
+                    test2 = table.Column<string>(nullable: true),
+                    test3 = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_UnitWork1", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "UnitWork2",
+                schema: "dbo",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    workTest1 = table.Column<string>(nullable: true),
+                    workTest2 = table.Column<string>(nullable: true),
+                    workTest3 = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_UnitWork2", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -704,35 +749,6 @@ namespace Shawn.AbpProject.Migrations
                         principalTable: "AbpUsers",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "CenterCost",
-                schema: "dbo",
-                columns: table => new
-                {
-                    Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    CenterCostBehaviorRecordsId = table.Column<int>(nullable: true),
-                    CenterCostUsesId = table.Column<int>(nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_CenterCost", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_CenterCost_CenterCostBehaviorRecord_CenterCostBehaviorRecordsId",
-                        column: x => x.CenterCostBehaviorRecordsId,
-                        principalSchema: "dbo",
-                        principalTable: "CenterCostBehaviorRecord",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_CenterCost_CenterCostUse_CenterCostUsesId",
-                        column: x => x.CenterCostUsesId,
-                        principalSchema: "dbo",
-                        principalTable: "CenterCostUse",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -1114,18 +1130,6 @@ namespace Shawn.AbpProject.Migrations
                 name: "IX_AbpUserTokens_TenantId_UserId",
                 table: "AbpUserTokens",
                 columns: new[] { "TenantId", "UserId" });
-
-            migrationBuilder.CreateIndex(
-                name: "IX_CenterCost_CenterCostBehaviorRecordsId",
-                schema: "dbo",
-                table: "CenterCost",
-                column: "CenterCostBehaviorRecordsId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_CenterCost_CenterCostUsesId",
-                schema: "dbo",
-                table: "CenterCost",
-                column: "CenterCostUsesId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -1209,6 +1213,22 @@ namespace Shawn.AbpProject.Migrations
                 schema: "dbo");
 
             migrationBuilder.DropTable(
+                name: "CenterCostBehaviorRecord",
+                schema: "dbo");
+
+            migrationBuilder.DropTable(
+                name: "CenterCostUse",
+                schema: "dbo");
+
+            migrationBuilder.DropTable(
+                name: "UnitWork1",
+                schema: "dbo");
+
+            migrationBuilder.DropTable(
+                name: "UnitWork2",
+                schema: "dbo");
+
+            migrationBuilder.DropTable(
                 name: "AbpEntityChanges");
 
             migrationBuilder.DropTable(
@@ -1216,14 +1236,6 @@ namespace Shawn.AbpProject.Migrations
 
             migrationBuilder.DropTable(
                 name: "AbpEditions");
-
-            migrationBuilder.DropTable(
-                name: "CenterCostBehaviorRecord",
-                schema: "dbo");
-
-            migrationBuilder.DropTable(
-                name: "CenterCostUse",
-                schema: "dbo");
 
             migrationBuilder.DropTable(
                 name: "AbpEntityChangeSets");

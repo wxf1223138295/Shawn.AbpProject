@@ -16,7 +16,7 @@
     <RootNamespace>Shawn.AbpProject</RootNamespace>
   </PropertyGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Shawn.AbpProject.Application\Shawn.AbpProject.Application.csproj" />
+    <ProjectReference Include="..\..\BizMasterData.Application\BizMasterData.Application.csproj" />
     <ProjectReference Include="..\Shawn.AbpProject.EntityFrameworkCore\Shawn.AbpProject.EntityFrameworkCore.csproj" />
   </ItemGroup>
   <ItemGroup>

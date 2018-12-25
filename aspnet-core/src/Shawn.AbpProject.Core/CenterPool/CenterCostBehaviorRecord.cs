@@ -25,14 +25,14 @@ namespace Shawn.AbpProject.CenterPool
             _actionId = actionId;
         }
 
-        public decimal _money;
-        public string _eventsource;
-        public int _eventid;
-        public string _eventversion;
-        public string _createuser;
-        public string _remark;
-        public string _actionType;
-        public int _actionId;
+        public decimal _money { get;private set; }
+        public string _eventsource { get; private set; }
+        public int _eventid { get; private set; }
+        public string _eventversion { get; private set; }
+        public string _createuser { get; private set; }
+        public string _remark { get; private set; }
+        public string _actionType { get; private set; }
+        public int _actionId { get; private set; }
         private IAudited _auditedImplementation;
         public DateTime CreationTime
         {

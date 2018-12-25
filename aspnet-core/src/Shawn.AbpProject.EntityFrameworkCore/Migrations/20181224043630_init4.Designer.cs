@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Shawn.AbpProject.EntityFrameworkCore;
 
 namespace Shawn.AbpProject.Migrations
 {
     [DbContext(typeof(AbpProjectDbContext))]
-    partial class AbpProjectDbContextModelSnapshot : ModelSnapshot
+    [Migration("20181224043630_init4")]
+    partial class init4
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -850,23 +852,6 @@ namespace Shawn.AbpProject.Migrations
                     b.ToTable("AbpOrganizationUnits");
                 });
 
-            modelBuilder.Entity("BizMasterData.Domain.Person", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("Age");
-
-                    b.Property<string>("Name");
-
-                    b.Property<string>("Tel");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Person","dbo");
-                });
-
             modelBuilder.Entity("Shawn.AbpProject.ApplyPool.ApplyCost", b =>
                 {
                     b.Property<int>("Id")
@@ -1042,9 +1027,9 @@ namespace Shawn.AbpProject.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int?>("_CenterCostBehaviorRecordsId");
+                    b.Property<int?>("BehaviorRecordId");
 
-                    b.Property<int?>("_CenterCostUsesId");
+                    b.Property<int?>("CostUseId");
 
                     b.Property<decimal?>("currentQuota");
 
@@ -1052,9 +1037,9 @@ namespace Shawn.AbpProject.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("_CenterCostBehaviorRecordsId");
+                    b.HasIndex("BehaviorRecordId");
 
-                    b.HasIndex("_CenterCostUsesId");
+                    b.HasIndex("CostUseId");
 
                     b.ToTable("CenterCost","dbo");
                 });
@@ -1072,22 +1057,6 @@ namespace Shawn.AbpProject.Migrations
                     b.Property<DateTime?>("LastModificationTime");
 
                     b.Property<long?>("LastModifierUserId");
-
-                    b.Property<int>("_actionId");
-
-                    b.Property<string>("_actionType");
-
-                    b.Property<string>("_createuser");
-
-                    b.Property<int>("_eventid");
-
-                    b.Property<string>("_eventsource");
-
-                    b.Property<string>("_eventversion");
-
-                    b.Property<decimal>("_money");
-
-                    b.Property<string>("_remark");
 
                     b.HasKey("Id");
 
@@ -1107,16 +1076,6 @@ namespace Shawn.AbpProject.Migrations
                     b.Property<DateTime?>("LastModificationTime");
 
                     b.Property<long?>("LastModifierUserId");
-
-                    b.Property<string>("_fromPool");
-
-                    b.Property<string>("_orderNum");
-
-                    b.Property<int>("_state");
-
-                    b.Property<decimal>("_sumQuota");
-
-                    b.Property<string>("_targetPool");
 
                     b.HasKey("Id");
 
@@ -1380,13 +1339,15 @@ namespace Shawn.AbpProject.Migrations
 
             modelBuilder.Entity("Shawn.AbpProject.CenterPool.CenterCost", b =>
                 {
-                    b.HasOne("Shawn.AbpProject.CenterPool.CenterCostBehaviorRecord", "_CenterCostBehaviorRecords")
+                    b.HasOne("Shawn.AbpProject.CenterPool.CenterCostBehaviorRecord")
                         .WithMany()
-                        .HasForeignKey("_CenterCostBehaviorRecordsId");
+                        .HasForeignKey("BehaviorRecordId")
+                        .OnDelete(DeleteBehavior.Restrict);
 
-                    b.HasOne("Shawn.AbpProject.CenterPool.CenterCostUse", "_CenterCostUses")
+                    b.HasOne("Shawn.AbpProject.CenterPool.CenterCostUse")
                         .WithMany()
-                        .HasForeignKey("_CenterCostUsesId");
+                        .HasForeignKey("CostUseId")
+                        .OnDelete(DeleteBehavior.Restrict);
                 });
 
             modelBuilder.Entity("Shawn.AbpProject.CenterPool.CenterCostUse", b =>

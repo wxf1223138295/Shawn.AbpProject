@@ -7,10 +7,6 @@ namespace Shawn.AbpProject.CenterPool
 {
     public class CostSubjectInfo: ValueObject<CostSubjectInfo>
     {
-        public CostSubjectInfo()
-        {
-        }
-
         public CostSubjectInfo(string subjectName, string costQuota, string costAttribute)
         {
             SubjectName = subjectName ?? throw new ArgumentNullException(nameof(subjectName));
@@ -18,6 +14,7 @@ namespace Shawn.AbpProject.CenterPool
             CostAttribute = costAttribute ?? throw new ArgumentNullException(nameof(costAttribute));
         }
 
+        private CostSubjectInfo() { }
         public String SubjectName { get; }
         public String CostQuota { get; }
         public String CostAttribute { get; }

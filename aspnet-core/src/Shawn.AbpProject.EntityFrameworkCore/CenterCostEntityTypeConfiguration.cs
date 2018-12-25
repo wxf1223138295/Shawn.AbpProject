@@ -11,7 +11,21 @@ namespace Shawn.AbpProject
     {
         public void Configure(EntityTypeBuilder<CenterCost> orderConfiguration)
         {
-            orderConfiguration.OwnsOne(o => o.CenterCostUses.costSubjectInfos);
+            orderConfiguration.HasKey(o => o.Id);
+
+            orderConfiguration.Property<string>("particularYear").IsRequired(false);
+            orderConfiguration.Property<decimal?>("currentQuota").IsRequired(false);
+
+            //orderConfiguration.HasOne<CenterCostBehaviorRecord>()
+            //    .WithMany()
+            //    .HasForeignKey("BehaviorRecordId")
+            //    .IsRequired(false)
+            //    .OnDelete(DeleteBehavior.Restrict);
+            //orderConfiguration.HasOne<CenterCostUse>()
+            //    .WithMany()
+            //    .HasForeignKey("CostUseId")
+            //    .IsRequired(false)
+            //    .OnDelete(DeleteBehavior.Restrict);
         }
     }
 }
