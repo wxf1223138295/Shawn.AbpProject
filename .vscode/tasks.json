@@ -1,0 +1,15 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "build",
+            "command": "dotnet",
+            "type": "process",
+            "args": [
+                "build",
+                "${workspaceFolder}/aspnet-core/src/Shawn.AbpProject.Migrator/Shawn.AbpProject.Migrator.csproj"
+            ],
+            "problemMatcher": "$msCompile"
+        }
+    ]
+}
