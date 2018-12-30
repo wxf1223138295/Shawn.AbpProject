@@ -4,7 +4,7 @@ const AppConsts= {
         defaultAdminUserName: 'admin'
     },
     localization:{
-        defaultLocalizationSourceName: 'FengCloud'
+        defaultLocalizationSourceName: 'AbpProject'
     },
     authorization:{
         encrptedAuthTokenName: 'enc_auth_token'

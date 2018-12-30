@@ -6,9 +6,11 @@ using Microsoft.IdentityModel.Tokens;
 using Abp.AspNetCore;
 using Abp.AspNetCore.Configuration;
 using Abp.AspNetCore.SignalR;
+using Abp.Localization;
 using Abp.Modules;
 using Abp.Reflection.Extensions;
 using Abp.Zero.Configuration;
+using BizMasterData.Application;
 using Shawn.AbpProject.Authentication.JwtBearer;
 using Shawn.AbpProject.Configuration;
 using Shawn.AbpProject.EntityFrameworkCore;
@@ -16,7 +18,8 @@ using Shawn.AbpProject.EntityFrameworkCore;
 namespace Shawn.AbpProject
 {
     [DependsOn(
-         typeof(AbpProjectApplicationModule),
+         //typeof(AbpProjectApplicationModule),
+        typeof(BizMasterDataApplicationModule),
          typeof(AbpProjectEntityFrameworkModule),
          typeof(AbpAspNetCoreModule)
         ,typeof(AbpAspNetCoreSignalRModule)
@@ -34,6 +37,7 @@ namespace Shawn.AbpProject
 
         public override void PreInitialize()
         {
+
             Configuration.DefaultNameOrConnectionString = _appConfiguration.GetConnectionString(
                 AbpProjectConsts.ConnectionStringName
             );
@@ -45,6 +49,11 @@ namespace Shawn.AbpProject
                  .CreateControllersForAppServices(
                      typeof(AbpProjectApplicationModule).GetAssembly()
                  );
+            //向swagger中动态生成api测试
+            Configuration.Modules.AbpAspNetCore()
+                .CreateControllersForAppServices(
+                    typeof(BizMasterDataApplicationModule).GetAssembly()
+                );
 
             ConfigureTokenAuth();
         }

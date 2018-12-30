@@ -1,0 +1,20 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\src\Shawn.AbpProject.Core\Shawn.AbpProject.Core.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="Abp">
+      <HintPath>C:\Users\RICH-IT-DEV\.nuget\packages\abp\3.9.0\lib\netstandard2.0\Abp.dll</HintPath>
+    </Reference>
+    <Reference Include="Abp.ZeroCore">
+      <HintPath>C:\Users\RICH-IT-DEV\.nuget\packages\abp.zerocore\3.9.0\lib\netstandard2.0\Abp.ZeroCore.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+</Project>
